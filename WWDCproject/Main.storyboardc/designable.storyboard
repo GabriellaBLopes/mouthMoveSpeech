@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qpr-Fb-LzH">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Gabriella View Controller-->
+        <scene sceneID="kEa-bo-axh">
+            <objects>
+                <viewController id="qpr-Fb-LzH" customClass="GabriellaViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZbY-Ch-pu8"/>
+                        <viewControllerLayoutGuide type="bottom" id="PSq-5T-Yei"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PgE-ON-WSi" customClass="GradientView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="92928B8D-2EE0-4D8F-A51F-CF010359D82B-2517-000000CD79FA5FD1_tmp.png" translatesAutoresizingMaskIntoConstraints="NO" id="uLM-7P-5fD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ab-YD-FXB">
+                                <rect key="frame" x="20" y="0.0" width="335" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sydThaKidFace.png" translatesAutoresizingMaskIntoConstraints="NO" id="hHn-ZF-5Kr">
+                                        <rect key="frame" x="18.5" y="106.5" width="297" height="453"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sydThaKidMouth.png" translatesAutoresizingMaskIntoConstraints="NO" id="Do9-vn-bjm">
+                                        <rect key="frame" x="18.5" y="106.5" width="297" height="453"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="hHn-ZF-5Kr" firstAttribute="centerY" secondItem="3ab-YD-FXB" secondAttribute="centerY" id="hMt-qq-BLA"/>
+                                    <constraint firstItem="hHn-ZF-5Kr" firstAttribute="centerX" secondItem="3ab-YD-FXB" secondAttribute="centerX" id="mpD-rm-ciA"/>
+                                    <constraint firstItem="Do9-vn-bjm" firstAttribute="centerX" secondItem="hHn-ZF-5Kr" secondAttribute="centerX" id="uq9-UZ-aUb"/>
+                                    <constraint firstItem="Do9-vn-bjm" firstAttribute="bottom" secondItem="hHn-ZF-5Kr" secondAttribute="bottom" id="yIC-DQ-dax"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.77059151790000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="3ab-YD-FXB" firstAttribute="top" secondItem="PgE-ON-WSi" secondAttribute="top" priority="250" id="1IN-9S-Eef"/>
+                            <constraint firstAttribute="bottom" secondItem="3ab-YD-FXB" secondAttribute="bottom" priority="250" id="HDN-Eo-neJ"/>
+                            <constraint firstItem="3ab-YD-FXB" firstAttribute="leading" secondItem="PgE-ON-WSi" secondAttribute="leading" constant="20" id="WJY-tK-mfC"/>
+                            <constraint firstAttribute="trailing" secondItem="3ab-YD-FXB" secondAttribute="trailing" constant="20" id="nE9-oC-ekm"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="constraintBottomMouthBottomFace" destination="yIC-DQ-dax" id="yb0-se-DOE"/>
+                        <outlet property="myFace" destination="hHn-ZF-5Kr" id="ZhW-Tf-ek9"/>
+                        <outlet property="myMouth" destination="Do9-vn-bjm" id="id8-rf-LTN"/>
+                        <outlet property="safeArea" destination="3ab-YD-FXB" id="a8U-5W-69a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZML-wN-6HX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="896.79999999999995" y="-353.9730134932534"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="92928B8D-2EE0-4D8F-A51F-CF010359D82B-2517-000000CD79FA5FD1_tmp.png" width="852" height="480"/>
+        <image name="sydThaKidFace.png" width="297" height="453"/>
+        <image name="sydThaKidMouth.png" width="297" height="453"/>
+    </resources>
+</document>
