@@ -19,8 +19,8 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     let synthesizer = AVSpeechSynthesizer()
     var speechMovement:[()->Void] = []
     var speechMovementIndex = 0
-    let animationDuration = 0.045
-    var animationTimer:Timer!
+    let animationDuration = 0.2
+    var animationTimer = Timer()
 
     
     
@@ -31,7 +31,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
         super.viewDidLoad()
         
         synthesizer.delegate = self
-        animationTimer = Timer()
+
         //        NSLayoutConstraint.activate([
         //            safeArea.topAnchor.constraint(equalTo: liveViewSafeAreaGuide.topAnchor, constant: 20),
         //            safeArea.bottomAnchor.constraint(equalTo: liveViewSafeAreaGuide.bottomAnchor)
@@ -44,7 +44,6 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         
         speakIntro()
-        openMouth()
         
     }
     
@@ -56,7 +55,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     func speakIntro(){
         
-        let utterance = AVSpeechUtterance(string: "Hi! My name is Gabriella Lopes.")
+        let utterance = AVSpeechUtterance(string: "Hello. My name is Gabriella Lopes. I'm Brazilian and I'm 20 years old.")
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         
         synthesizer.speak(utterance)
@@ -66,82 +65,24 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
         
         print("will speak")
         
-/*
-         
-        let analyzedUtterance = analyzeUtterance(utterance: utterance.speechString)
+        speechMovement.append(openMouth)
         
-        for vowelCount in analyzedUtterance.vowels{
+        let microMovements = ceil(Float(characterRange.length) / 3.0)
+        print("Micro movements = \(microMovements)") // ceil rounds float up
+        
+        if microMovements > 1{
             
+            for _ in 0...Int(microMovements){
+            speechMovement.append(openMidMouth)
             speechMovement.append(openMouth)
-            if vowelCount <= 1{
-                speechMovement.append(closeMouth)
-            } else{
-                for _ in 1...vowelCount{
-                    speechMovement.append(openMidMouth)
-                    speechMovement.append(openMouth)
-                }
-                speechMovement.append(closeMouth)
             }
-            
         }
- */
         
-        
-        //print("speechMovement = \(speechMovement)")
-    }
-    
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        
-        //print("did start utterance")
-        let analyzedUtterance = analyzeUtterance(utterance: utterance.speechString)
-        
-        for vowelCount in analyzedUtterance.vowels{
-            
-            speechMovement.append(openMouth)
-            if vowelCount <= 1{
-                speechMovement.append(closeMouth)
-            } else{
-                for _ in 1...vowelCount{
-                    speechMovement.append(openMidMouth)
-                    speechMovement.append(openMouth)
-                }
-                speechMovement.append(closeMouth)
-            }
-            
-        }
+        speechMovement.append(closeMouth)
         
         createAnimationTimer()
-        
     }
     
-    func analyzeUtterance(utterance: String) -> (vowels:[Int], words:Int){
-        
-        var vowelsCount:[Int] = [0]
-        var wordCount = 1
-        
-        
-        for character in utterance.characters {
-            
-            switch character{
-                
-            case " ":
-                wordCount += 1
-                vowelsCount.append(0)
-                
-            case "a","e","i","o","u":
-                
-                if vowelsCount.count == wordCount{
-                    vowelsCount[wordCount-1] += 1
-                }
-                
-            default:
-                print(" ")
-            }
-        }
-        
-        print("vowelsCount: \(vowelsCount)\nwordCount: \(wordCount)")
-        return (vowelsCount, wordCount)
-    }
     
     func animateMouth(){
         
@@ -154,6 +95,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
             animationTimer.invalidate()
             animationTimer = Timer()
         }
+        
         
     }
     
