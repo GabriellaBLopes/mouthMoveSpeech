@@ -55,7 +55,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     func speakIntro(){
         
-        let utterance = AVSpeechUtterance(string: "Hello. My name is Gabriella Lopes. I'm Brazilian and I'm 20 years old.")
+        let utterance = AVSpeechUtterance(string: "Hello. My name is Gabriella Lopes. I'm Brazilian and I'm 20 years old. I like to move it move it. I like to move it move it. I like to move it move it. We like to. Move it! Okay ladies, now let's get in formation. Because I slay.")
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         
         synthesizer.speak(utterance)
