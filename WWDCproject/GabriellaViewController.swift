@@ -19,10 +19,11 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     let synthesizer = AVSpeechSynthesizer()
     var speechMovement:[()->Void] = []
     var speechMovementIndex = 0
+    var currentSpeech = 0
     let animationDuration = 0.2
     var animationTimer = Timer()
 
-    
+    let gabriellaSpeech = ["Hello. My name is Gabriella Lopes.", "I'm Brazilian and I'm 20 years old.", "I like to move it move it.", "I like to move it move it. I like to move it move it. We like to. Move it!", "Okay ladies, now let's get in formation.", "Because I slay."]
     
     @IBOutlet weak var constraintBottomMouthBottomFace: NSLayoutConstraint!
     
@@ -43,7 +44,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        speakIntro()
+        speak(currentSpeech: currentSpeech)
         
     }
     
@@ -53,9 +54,9 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     }
     
     
-    func speakIntro(){
+    func speak(currentSpeech:Int){
         
-        let utterance = AVSpeechUtterance(string: "Hello. My name is Gabriella Lopes. I'm Brazilian and I'm 20 years old. I like to move it move it. I like to move it move it. I like to move it move it. We like to. Move it! Okay ladies, now let's get in formation. Because I slay.")
+        let utterance = AVSpeechUtterance(string: gabriellaSpeech[currentSpeech])
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         
         synthesizer.speak(utterance)
@@ -81,6 +82,16 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
         speechMovement.append(closeMouth)
         
         createAnimationTimer()
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        
+        if currentSpeech < gabriellaSpeech.count - 1{
+        
+            currentSpeech += 1
+        speak(currentSpeech: currentSpeech)
+        }
+        
     }
     
     
