@@ -16,14 +16,21 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     @IBOutlet var safeArea: UIView!
     @IBOutlet weak var myFace: UIImageView!
     @IBOutlet weak var myMouth: UIImageView!
+    @IBOutlet weak var askButton: UIButton!
+    @IBOutlet weak var captionLabel: UILabel!
+    
+    
     let synthesizer = AVSpeechSynthesizer()
     var speechMovement:[()->Void] = []
     var speechMovementIndex = 0
     var currentSpeech = 0
     let animationDuration = 0.2
     var animationTimer = Timer()
+    
+    let questionText = ["Nice Siri voice, Gabriella! Tell me a bit about yourself. What do you like to do?", "Cool dance. But seriously, what do you do?", "Really? Why is it that you want to go to WWDC?", "You’re in! Let’s go!"]
 
-    let gabriellaSpeech = ["Hello. My name is Gabriella Lopes.", "I'm Brazilian and I'm 20 years old.", "I like to move it move it.", "I like to move it move it. I like to move it move it. We like to. Move it!", "Okay ladies, now let's get in formation.", "Because I slay."]
+    let gabriellaSpeech = ["Well, hello there! Nice to talk to you! It gets boring sometimes... Being a floating head and all. My name is Gabriella Lopes, I’m 20 years old and live in Rio de Janeiro, Brazil.", "I like to move it move it. I like to move it move it. I like to move it move it. Ya like to. Move it!","Thanks! I’m a design undergraduate and I’m really fascinated by technology. I’m currently learning iOS development and really enjoy making apps, I even got a few of them on the App Store! I’m also really looking forward to this year’s W W D C!", "Are you kidding me? It would be so awesome and rewarding! Going to W W D C would be a great opportunity to meet people from all over the world who also want to use technology as a tool to make a change for what they believe in. Haha! I get really excited just thinking about it!", "I’m in? WOOOOOOOOOOOOOOOOOOOHOOOOOO!"]
+
     
     @IBOutlet weak var constraintBottomMouthBottomFace: NSLayoutConstraint!
     
@@ -32,6 +39,11 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
         super.viewDidLoad()
         
         synthesizer.delegate = self
+        self.askButton.layer.cornerRadius = 3
+        
+        print("___ \(questionText.count) ___QUESTION TEXT COUNT")
+        print("____ \(gabriellaSpeech.count) GABRIELLA SPEECH COUNT")
+
 
         //        NSLayoutConstraint.activate([
         //            safeArea.topAnchor.constraint(equalTo: liveViewSafeAreaGuide.topAnchor, constant: 20),
@@ -44,7 +56,6 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        speak(currentSpeech: currentSpeech)
         
     }
     
@@ -58,6 +69,8 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
         
         let utterance = AVSpeechUtterance(string: gabriellaSpeech[currentSpeech])
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        
+        self.captionLabel.text = utterance.speechString
         
         synthesizer.speak(utterance)
     }
@@ -89,7 +102,6 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
         if currentSpeech < gabriellaSpeech.count - 1{
         
             currentSpeech += 1
-        speak(currentSpeech: currentSpeech)
         }
         
     }
@@ -117,6 +129,16 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
         
         animationTimer.fire()
     }
+    
+    //MARK: Actions
+    
+    @IBAction func tappedAskButton(_ sender: Any) {
+        
+        speak(currentSpeech: currentSpeech)
+    }
+    
+    
+    //MARK: Open, mid open and close mouth animations
     
     func openMouth(){
         
