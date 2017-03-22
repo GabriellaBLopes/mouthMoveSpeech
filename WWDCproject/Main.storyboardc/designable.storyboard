@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qpr-Fb-LzH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qpr-Fb-LzH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,11 +28,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ab-YD-FXB">
                                 <rect key="frame" x="20" y="0.0" width="335" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sydThaKidFace" translatesAutoresizingMaskIntoConstraints="NO" id="hHn-ZF-5Kr">
-                                        <rect key="frame" x="19" y="159" width="297" height="453"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cara1" translatesAutoresizingMaskIntoConstraints="NO" id="hHn-ZF-5Kr">
+                                        <rect key="frame" x="-44" y="159" width="423" height="461"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sydThaKidMouth" translatesAutoresizingMaskIntoConstraints="NO" id="Do9-vn-bjm">
-                                        <rect key="frame" x="19" y="159" width="297" height="453"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boca1" translatesAutoresizingMaskIntoConstraints="NO" id="Do9-vn-bjm">
+                                        <rect key="frame" x="-44" y="159" width="423" height="461"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rjr-HB-43M">
                                         <rect key="frame" x="10" y="79" width="315" height="30"/>
@@ -58,7 +58,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6q-Xj-Jft">
-                                        <rect key="frame" x="0.0" y="620" width="335" height="55"/>
+                                        <rect key="frame" x="0.0" y="628" width="335" height="47"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAh-wU-1tb">
                                                 <rect key="frame" x="8" y="17" width="42" height="21"/>
@@ -128,7 +128,7 @@
     </scenes>
     <resources>
         <image name="backgroundIpanema" width="375" height="667"/>
-        <image name="sydThaKidFace" width="297" height="453"/>
-        <image name="sydThaKidMouth" width="297" height="453"/>
+        <image name="boca1" width="423" height="461"/>
+        <image name="cara1" width="423" height="461"/>
     </resources>
 </document>
