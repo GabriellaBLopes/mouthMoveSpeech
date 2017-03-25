@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "sydThaKidFace.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "backgroundRioDeJaneiro.jpg",
       "scale" : "2x"
     },
     {
