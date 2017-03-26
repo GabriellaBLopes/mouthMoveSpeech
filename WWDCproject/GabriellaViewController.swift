@@ -17,9 +17,16 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
   @IBOutlet weak var myFace: UIImageView!
   @IBOutlet weak var myMouth: UIImageView!
   
+  @IBOutlet weak var background: UIImageView!
+  
+  
+  let faceTapRecognizer = UITapGestureRecognizer()
+  
+  
   @IBOutlet weak var askButton: UIButton!
   @IBOutlet weak var askLabel: UILabel!
   @IBOutlet weak var askSubLabel: UILabel!
+  
   
   
   @IBOutlet weak var captionLabel: UILabel!
@@ -32,12 +39,17 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
   let animationDuration = 0.2
   var animationTimer = Timer()
   
+  let faceCout = 4
+  var faceIndex = 1
+  
   let questionSpeech = ["Hey! What’s up?", "Woah! Cool Siri voice!\nAnd who are you?", "Nice meeting you!\nWhat do you like to do, Gabriella?", "I like to move it too!\nWe have so much in common!\n\nCome to WWDC with me!"]
   
   let gabriellaSpeech = ["Nothing much, just floating around!", "I’m Gabriella Lopes! I’m 20 years old and study Design in Rio de Janeiro, Brazil!","I like to move it move it. I like to move it move it. I like to move it move it. Ya like to. Move it!", "Let’s go! Wohooooooooo!!"]
   
   
   @IBOutlet weak var constraintBottomMouthBottomFace: NSLayoutConstraint!
+  
+  @IBOutlet weak var constraintFaceCenterY: NSLayoutConstraint!
   
   
   override func viewDidLoad() {
@@ -46,7 +58,11 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     synthesizer.delegate = self
     self.askButton.layer.cornerRadius = 3
     self.askLabel.text = questionSpeech[currentSpeech]
-
+    
+    faceTapRecognizer.addTarget(self, action: #selector(GabriellaViewController.tappedMyFace))
+    myFace.addGestureRecognizer(faceTapRecognizer)
+    
+    
     
     self.captionLabel.alpha = 0
     
@@ -65,7 +81,18 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
   
   override func viewDidAppear(_ animated: Bool) {
     
-    
+    //Makes head float
+  
+    /*
+    UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut, .autoreverse, .repeat, .allowUserInteraction], animations: {
+      
+      self.constraintFaceCenterY.constant += 20
+      
+      self.view.layoutIfNeeded()
+      
+      
+    }, completion: nil)
+ */
   }
   
   override func didReceiveMemoryWarning() {
@@ -141,6 +168,11 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
       
       self.constraintBottomMouthBottomFace.constant = 30
+      
+      if self.synthesizer.isSpeaking == false{
+        self.constraintBottomMouthBottomFace.constant = 0
+      }
+      
       self.view.layoutIfNeeded()
       
     }, completion: nil)
@@ -159,6 +191,11 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
   }
   
   func closeMouth(){
+    
+    if self.synthesizer.isSpeaking == false{
+      
+      return
+    }
     
     print("close mouth")
     
@@ -200,16 +237,16 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     if currentSpeech < gabriellaSpeech.count - 1{
       
       currentSpeech += 1
+      self.askLabel.text = questionSpeech[currentSpeech]
+      hideCaptionShowAsk()
+      
+    } else{
+      
+      self.background.image = UIImage(named: "backgroundWWDC")
     }
     
-    self.askLabel.text = questionSpeech[currentSpeech]
-
-    
-    hideCaptionShowAsk()
-    
+    //speechMovement = []
   }
-  
-  
   
   
   //MARK:- Actions
@@ -219,6 +256,21 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     hideAskShowCaption()
     
     speak(currentSpeech: currentSpeech)
+  }
+  
+  func tappedMyFace(){
+    
+    faceIndex += 1
+    
+    if faceIndex > faceCout{
+      
+      faceIndex = 1
+    }
+    
+    myFace.image = UIImage(named: "cara\(faceIndex)")
+    myMouth.image = UIImage(named: "boca\(faceIndex)")
+    
+    print("OUCH!")
   }
   
   
