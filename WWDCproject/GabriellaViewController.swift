@@ -14,6 +14,8 @@ import AVFoundation
 class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
   
   @IBOutlet var safeArea: UIView!
+  
+  @IBOutlet weak var gabriellaView: UIView!
   @IBOutlet weak var myFace: UIImageView!
   @IBOutlet weak var myMouth: UIImageView!
   
@@ -56,11 +58,19 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     super.viewDidLoad()
     
     synthesizer.delegate = self
+    
     self.askButton.layer.cornerRadius = 3
+    self.askButton.layer.shadowRadius = 7
+    self.askButton.layer.shadowColor = UIColor.black.cgColor
+    self.askButton.layer.shadowOpacity = 0.5
+    
+    
     self.askLabel.text = questionSpeech[currentSpeech]
     
     faceTapRecognizer.addTarget(self, action: #selector(GabriellaViewController.tappedMyFace))
-    myFace.addGestureRecognizer(faceTapRecognizer)
+    
+    
+    gabriellaView.addGestureRecognizer(faceTapRecognizer)
     
     
     
@@ -83,7 +93,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     //Makes head float
   
-    /*
+   // /*
     UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut, .autoreverse, .repeat, .allowUserInteraction], animations: {
       
       self.constraintFaceCenterY.constant += 20
@@ -92,7 +102,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
       
       
     }, completion: nil)
- */
+ //*/
   }
   
   override func didReceiveMemoryWarning() {
@@ -165,7 +175,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     print("open mouth")
     
-    UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
+    UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
       
       self.constraintBottomMouthBottomFace.constant = 30
       
@@ -182,7 +192,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     print("open MID mouth")
     
-    UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
+    UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
       
       self.constraintBottomMouthBottomFace.constant = 15
       self.view.layoutIfNeeded()
@@ -200,7 +210,7 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
     print("close mouth")
     
     
-    UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
+    UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
       
       self.constraintBottomMouthBottomFace.constant = 0
       self.view.layoutIfNeeded()
@@ -259,22 +269,20 @@ class GabriellaViewController: UIViewController, AVSpeechSynthesizerDelegate {
   }
   
   func tappedMyFace(){
-    
-    faceIndex += 1
-    
-    if faceIndex > faceCout{
       
-      faceIndex = 1
+      
+      self.faceIndex += 1
+      
+      if self.faceIndex > self.faceCout{
+        
+        self.faceIndex = 1
+      }
+      
+      self.myFace.image = UIImage(named: "cara\(self.faceIndex)")
+      self.myMouth.image = UIImage(named: "boca\(self.faceIndex)")
+      
+      print("OUCH!")
     }
-    
-    myFace.image = UIImage(named: "cara\(faceIndex)")
-    myMouth.image = UIImage(named: "boca\(faceIndex)")
-    
-    print("OUCH!")
-  }
-  
-  
-  
 }
 extension GabriellaViewController {
   class func loadFromStoryboard() -> GabriellaViewController {
